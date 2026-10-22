@@ -1,0 +1,19 @@
+{
+  "siteUrl": "https://ruleofthirds.in",
+  "siteName": "Rule Of Thirds",
+  "ogImage": "/og-image.jpg",
+  "routes": {
+    "/": {
+      "title": "Rule Of Thirds | Photography & Videography Studio in Kumaraswamy Layout, Bengaluru",
+      "description": "Rule Of Thirds is a photography and videography studio in Kumaraswamy Layout, Bengaluru, capturing events, dance and classical performances, Arangetrams, concerts, portraits and cinematic films."
+    },
+    "/work": {
+      "title": "Our Work | Event, Dance & Performance Photography in Bengaluru – Rule Of Thirds",
+      "description": "Explore the Rule Of Thirds portfolio: event photography, dance and Arangetram coverage, music concerts, portraits, cinematic films and behind-the-scenes moments from Bengaluru."
+    },
+    "/contact": {
+      "title": "Contact & Bookings | Rule Of Thirds Photography Studio, Bengaluru",
+      "description": "Tell us about your event, performance or portrait session. Contact Rule Of Thirds, Kumaraswamy Layout, Bengaluru, on +91 85498 88399 or via WhatsApp."
+    }
+  }
+}
