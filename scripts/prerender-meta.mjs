@@ -39,10 +39,13 @@ function render(path, { title, description }, { noindex = false } = {}) {
   return html
 }
 
+// Preview builds (e.g. GitHub Pages) set VITE_NOINDEX=true so they aren't indexed as a duplicate of the real domain.
+const previewBuild = process.env.VITE_NOINDEX === 'true'
+
 for (const [path, meta] of Object.entries(seo.routes)) {
   const file = path === '/' ? join(dist, 'index.html') : join(dist, path.slice(1), 'index.html')
   await mkdir(dirname(file), { recursive: true })
-  await writeFile(file, render(path, meta))
+  await writeFile(file, render(path, meta, { noindex: previewBuild }))
   console.log(`  ✓ ${path.padEnd(10)} → ${file.replace(root + '/', '')}`)
 }
 

@@ -23,3 +23,20 @@ export function placeholder(name: string, ratio: number, widths: number[] = [800
     placeholder: true,
   }
 }
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
+
+/**
+ * Prefix a root-relative public path ("/images/a.webp") with the deploy base, so the site also
+ * works from a sub-folder (e.g. GitHub Pages at /photography-studio-/). Absolute URLs pass through.
+ */
+export const withBase = (url: string) => (url.startsWith('/') && !url.startsWith('//') ? BASE + url : url)
+
+export const srcSetWithBase = (srcSet?: string) =>
+  srcSet
+    ?.split(',')
+    .map((candidate) => {
+      const [url, ...descriptor] = candidate.trim().split(/\s+/)
+      return [withBase(url), ...descriptor].join(' ')
+    })
+    .join(', ')

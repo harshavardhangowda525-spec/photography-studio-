@@ -1,5 +1,5 @@
 import type { ImgHTMLAttributes } from 'react'
-import type { ImageAsset } from '../../lib/image'
+import { srcSetWithBase, withBase, type ImageAsset } from '../../lib/image'
 
 interface ResponsiveImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'srcSet' | 'width' | 'height'> {
   image: ImageAsset
@@ -12,8 +12,8 @@ interface ResponsiveImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>,
 export function ResponsiveImage({ image, alt, sizes = '100vw', priority, className, ...rest }: ResponsiveImageProps) {
   return (
     <img
-      src={image.src}
-      srcSet={image.srcSet}
+      src={withBase(image.src)}
+      srcSet={srcSetWithBase(image.srcSet)}
       sizes={image.srcSet ? sizes : undefined}
       width={image.width}
       height={image.height}

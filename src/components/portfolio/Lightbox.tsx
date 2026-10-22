@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { categoryLabel, type PortfolioItem } from '../../content/portfolio'
+import { srcSetWithBase, withBase } from '../../lib/image'
 import { ease } from '../../motion/presets'
 import { PlaceholderTag } from '../ui/PlaceholderTag'
 
@@ -88,7 +89,7 @@ export function Lightbox({ items, index, onClose, onIndexChange }: LightboxProps
     for (const d of [1, -1]) {
       const n = items[(index + d + items.length) % items.length]
       const img = new Image()
-      img.src = n.image.src
+      img.src = withBase(n.image.src)
     }
   }, [index, items])
 
@@ -166,21 +167,21 @@ export function Lightbox({ items, index, onClose, onIndexChange }: LightboxProps
                       controls
                       playsInline
                       preload="metadata"
-                      poster={item.image.src}
+                      poster={withBase(item.image.src)}
                       className="max-h-[calc(100svh-18rem)] sm:max-h-[calc(100svh-13rem)] w-auto max-w-full bg-black shadow-2xl"
                       width={item.image.width}
                       height={item.image.height}
                       aria-label={item.alt}
                     >
                       {item.video.map((s) => (
-                        <source key={s.src} src={s.src} type={s.type} />
+                        <source key={s.src} src={withBase(s.src)} type={s.type} />
                       ))}
                       Your browser can&rsquo;t play this film.
                     </video>
                   ) : (
                     <img
-                      src={item.image.src}
-                      srcSet={item.image.srcSet}
+                      src={withBase(item.image.src)}
+                      srcSet={srcSetWithBase(item.image.srcSet)}
                       sizes="(min-width: 1024px) 80vw, 100vw"
                       width={item.image.width}
                       height={item.image.height}

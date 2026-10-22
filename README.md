@@ -94,6 +94,9 @@ Nothing is stored on the site. If the studio later wants email delivery or a CRM
 The build output is a static folder (`dist/`). It works on any static host:
 
 - **Netlify:** build command `npm run build`, publish directory `dist`. `public/_redirects` (404 fallback) and `public/_headers` (long-term caching) are included.
+- **GitHub Pages (preview):** `.github/workflows/deploy-pages.yml` builds and deploys on every push to `main` to
+  **https://harshavardhangowda525-spec.github.io/photography-studio-/**. One-time setup: *Settings → Pages → Build and deployment → Source → GitHub Actions*.
+  The workflow builds with `BASE_PATH=/<repo>/`, so the site runs from the sub-folder, and `VITE_NOINDEX=true`, so search engines don't index the preview as a duplicate of ruleofthirds.in.
 - **Vercel:** framework "Vite". `vercel.json` sets clean URLs and cache headers.
 - **Other hosts:** serve `dist/`, map `/work` → `work/index.html` and `/contact` → `contact/index.html`, use `404.html` for unknown paths, and enable gzip or brotli.
 

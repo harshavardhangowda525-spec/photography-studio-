@@ -6,6 +6,7 @@ import { PortfolioTile } from '../components/portfolio/PortfolioTile'
 import { ButtonLink } from '../components/ui/Button'
 import { PlaceholderTag } from '../components/ui/PlaceholderTag'
 import { categories, categoryLabel, portfolio, type CategoryId } from '../content/portfolio'
+import { withBase } from '../lib/image'
 import { useSeo } from '../lib/useSeo'
 import { ease } from '../motion/presets'
 import { Reveal } from '../motion/Reveal'
@@ -199,14 +200,14 @@ export default function Work() {
                           playsInline
                           muted
                           preload="none"
-                          poster={f.image.src}
+                          poster={withBase(f.image.src)}
                           width={f.image.width}
                           height={f.image.height}
                           className="aspect-video h-auto w-full"
                           aria-label={f.alt}
                         >
                           {f.video!.map((s) => (
-                            <source key={s.src} src={s.src} type={s.type} />
+                            <source key={s.src} src={withBase(s.src)} type={s.type} />
                           ))}
                           Your browser can&rsquo;t play this film.
                         </video>

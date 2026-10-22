@@ -24,6 +24,7 @@ export function useSeo(route: RouteKey | { title: string; description: string; p
     setMeta('meta[property="og:url"]', 'content', url)
     setMeta('meta[name="twitter:title"]', 'content', meta.title)
     setMeta('meta[name="twitter:description"]', 'content', meta.description)
-    setMeta('meta[name="robots"]', 'content', meta.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large')
+    const noindex = meta.noindex || import.meta.env.VITE_NOINDEX === 'true'
+    setMeta('meta[name="robots"]', 'content', noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large')
   }, [route])
 }
